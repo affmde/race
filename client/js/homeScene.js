@@ -13,7 +13,7 @@ class HomeScene extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image('homeScreen', 'assets/homeScreen.png');
+        this.load.image('homeScreen', 'assets/homescreen.png');
         this.load.image('blueButton', 'assets/button_blue.png');
         this.load.image('yellowButton', 'assets/button_yellow.png');
         this.load.image('homeLogoutBtn', 'assets/logout_button.png');
