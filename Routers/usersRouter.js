@@ -15,6 +15,10 @@ usersRouter.post('/newUser', async (req, res)=>{
         experience: 0,
         coins: 0,
         level: 0,
+        wins: 0,
+        races: [],
+        driver: 'driver1'
+        
     }
     const saveUser= new Users(newUser);
 

@@ -74,9 +74,9 @@ class WaitingRoom extends Phaser.Scene{
             console.log(socket.id)
             socket.emit('connected', ({id: socket.id, stats: gameStatus.player1, name: playerStats.username}))
         })
-        const playBtn= this.add.image(w*0.5, h*0.8, 'btnYellow').setOrigin(0.5).setInteractive().setScale(0.5);
-        this.playBtn= this.add.text(w*0.5, h*0.8, 'Play', {fontSize: 30}).setOrigin(0.5);
-        playBtn.on('pointerdown', ()=>{
+        this.playBtn= this.add.image(w*0.5, h*0.8, 'btnYellow').setOrigin(0.5).setScale(0.5);
+        this.playBtnText= this.add.text(w*0.5, h*0.8, 'Waiting for more players', {fontSize: 22, wordWrap: { width: 200, useAdvancedWrap: true }}).setOrigin(0.5);
+        this.playBtn.on('pointerdown', ()=>{
             gameStatus.player1.ready=!gameStatus.player1.ready;
             socket.emit('startPlay', {id: socket.id, play: true})
         })
@@ -127,7 +127,15 @@ class WaitingRoom extends Phaser.Scene{
     }
 
     update(){
-        
+        if(playerList.length>1){
+            this.playBtn.setInteractive({cursor: 'pointer'});
+            this.playBtnText.setText('Play')
+            this.playBtn.setVisible(true)
+        }else{
+            this.playBtn.disableInteractive();
+            this.playBtnText.setText('Waiting for more players');
+            this.playBtn.setVisible(false)
+        }
     }
 
     showBestScores(track){
