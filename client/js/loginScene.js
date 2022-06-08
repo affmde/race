@@ -119,7 +119,7 @@ class LoginScene extends Phaser.Scene{
             body: JSON.stringify(body)
         }
         try{
-            const response= await fetch('http://localhost:3000/users/newUser', requestOptions);
+            const response= await fetch('/users/newUser', requestOptions);
             const data= await response.json();
             console.log('new player data: ', data)
             if(data){
@@ -148,7 +148,7 @@ class LoginScene extends Phaser.Scene{
             body: JSON.stringify(body)
         }
         try{
-            const response = await fetch('http://localhost:3000/users/login', requestOptions);
+            const response = await fetch('/users/login', requestOptions);
             const data= await response.json();
             user= data;
             //Load player data

@@ -116,7 +116,7 @@ const saveLap= async (lap)=>{
     }
 
     try{
-        const response= await fetch('http://localhost:3000/tracks/newLap', requestOptions);
+        const response= await fetch('/tracks/newLap', requestOptions);
         const data = await response.json();
         console.log(data)
     }catch(err){
@@ -137,7 +137,7 @@ const saveRace= async(race) =>{
     }
 
     try{
-        const response= await fetch('http://localhost:3000/users/addRace', requestOptions);
+        const response= await fetch('/users/addRace', requestOptions);
         const data= await response.json();
         console.log('addRace data: ', data)
 
@@ -156,7 +156,7 @@ const getLaps = async () =>{
 
 
     try{
-        const response= await fetch('http://localhost:3000/tracks/laps', requestOptions);
+        const response= await fetch('/tracks/laps', requestOptions);
         const data= await response.json();
         return data
     }catch(err){
@@ -179,7 +179,7 @@ const saveReward = async () =>{
     }
 
     try{
-        const response= await fetch('http://localhost:3000/users/updateReward', requestOptions);
+        const response= await fetch('/users/updateReward', requestOptions);
         const data= await response.json();
         console.log('addRace data: ', data)
 
@@ -198,7 +198,7 @@ const addWin = async () =>{
         body: JSON.stringify(body)
     }
     try{
-        const response= await fetch('http://localhost:3000/users/addWin', requestOptions);
+        const response= await fetch('/users/addWin', requestOptions);
         const data= await response.json();
         console.log('addRace data: ', data)
     }catch(err){
@@ -214,7 +214,7 @@ const editProfile = async (info) =>{
         body: JSON.stringify(info)
     }
     try{
-        const response= await fetch('http://localhost:3000/users/infoEdit', requestOptions);
+        const response= await fetch('/users/infoEdit', requestOptions);
         const data= await response.json();
         console.log('addRace data: ', data)
     }catch(err){

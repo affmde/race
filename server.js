@@ -127,6 +127,6 @@ io.on('connection', async (socket)=>{
 })
 
 const PORT= process.env.PORT
-server.listen(PORT, ()=>{
+server.listen(PORT || 3000, ()=>{
     console.log(`Server running on ${PORT}`)
 })
