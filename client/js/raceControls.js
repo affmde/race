@@ -25,32 +25,32 @@ class RaceControls{
             
             this.accelerationBtn.on('pointerdown', ()=>{
                 player.body.acceleration.setToPolar(player.rotation, 100);
-                this.accelerationBtn.setAlpha(0.5)
+                this.accelerationBtn.setAlpha(0.4)
             })
             this.accelerationBtn.on('pointerup', ()=>{
                 player.setAcceleration(0);
                 player.body.setDrag(0.9);
-                this.accelerationBtn.setAlpha(0.9)
+                this.accelerationBtn.setAlpha(0.7)
             })
             this.accelerationBtn.on('pointerout', ()=>{
                 player.setAcceleration(0);
                 player.body.setDrag(0.9);
-                this.accelerationBtn.setAlpha(0.9)
+                this.accelerationBtn.setAlpha(0.7)
             })
             button2.on('pointerdown', () =>{
                 player.setAcceleration(0)
                 player.body.setDrag(0.3);
-                button2.setAlpha(0.5)
+                button2.setAlpha(0.4)
             })
             button2.on('pointerup', ()=>{
                 player.setAcceleration(0);
                 player.body.setDrag(0.9);
-                button2.setAlpha(0.9)
+                button2.setAlpha(0.7)
             })
             button2.on('pointerout', ()=>{
                 player.setAcceleration(0);
                 player.body.setDrag(0.9);
-                button2.setAlpha(0.9)
+                button2.setAlpha(0.7)
             })
         }else{
 

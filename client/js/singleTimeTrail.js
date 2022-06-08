@@ -53,8 +53,8 @@ class SingleTimeTrail extends Phaser.Scene{
             })
             this.pointer2= this.input.addPointer()
             this.pointer3= this.input.addPointer()
-            this.accelerationBtn= this.add.image(w-190, h-100, 'singleTimeTrailPs4CrossBtn').setOrigin(0.5).setInteractive().setScrollFactor(0).setAlpha(0.9);
-            this.breakBtn= this.add.image(w-100, h-200, 'singleTimeTrailPs4CircleBtn').setOrigin(0.5).setInteractive().setScrollFactor(0).setAlpha(0.9);
+            this.accelerationBtn= this.add.image(w-190, h-75, 'singleTimeTrailPs4CrossBtn').setOrigin(0.5).setInteractive().setScrollFactor(0).setAlpha(0.7);
+            this.breakBtn= this.add.image(w-80, h-210, 'singleTimeTrailPs4CircleBtn').setOrigin(0.5).setInteractive().setScrollFactor(0).setAlpha(0.7);
         }
         
 
