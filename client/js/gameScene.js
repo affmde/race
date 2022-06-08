@@ -76,8 +76,8 @@ class GameScene extends Phaser.Scene{
                 enable: true
             })
             this.pointer2= this.input.addPointer()
-            this.accelerationBtn= this.add.image(w-200, h-50, 'gameScenePs4CrossBtn').setOrigin(0.5).setInteractive().setScrollFactor(0).setAlpha(0.9);
-            this.breakBtn= this.add.image(w-50, h-150, 'gameScenePs4CircleBtn').setOrigin(0.5).setInteractive().setScrollFactor(0).setAlpha(0.9);
+            this.accelerationBtn= this.add.image(w-190, h-50, 'gameScenePs4CrossBtn').setOrigin(0.5).setInteractive().setScrollFactor(0).setAlpha(0.9);
+            this.breakBtn= this.add.image(w-50, h-200, 'gameScenePs4CircleBtn').setOrigin(0.5).setInteractive().setScrollFactor(0).setAlpha(0.9);
         }
 
         //Create life bar
