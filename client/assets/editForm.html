@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #input-form {
+            padding: 15px;
+            background-color: #931c22f6;
+            width: 400px;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            position: relative;
+        }
+        #input-form input {
+            padding: 10px;
+            font-size: 20px;
+            width: 200px;
+            color: black;
+            margin-bottom: 5px;
+        }
+        #loginBtn{
+            background-color: rgba(63, 63, 171, 0.838);
+            color: white;
+            cursor: pointer;
+            padding: 10px 30px;
+            width: 100px;
+            margin-top: 50px;
+            border-radius: 5px;
+            
+        }
+        #loginTitle{
+            margin-bottom: 50px;
+        }
+        #closeBtn{
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            width: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="input-form">
+        <h1 id="loginTitle">Edit</h1>
+        <img src="https://img.icons8.com/color/2x/close-window.png" alt="close button" id="closeBtn" name="closeBtn">
+        <input type="text" name="name" >
+        <button name="loginButton" id="loginBtn">Confirm</button>
+    </div>
+</body>
+</html>

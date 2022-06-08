@@ -1,0 +1,20 @@
+{
+    "anims": [
+        {
+            "key": "cheer",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 5,
+            "frames": [
+                {
+                    "key": "cheer",
+                    "frame": "character_maleadventurer_cheer0"
+                },
+                {
+                    "key": "cheer",
+                    "frame": "character_maleadventurer_cheer1"
+                }
+            ]
+        }
+    ]
+}
