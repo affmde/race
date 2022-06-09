@@ -8,7 +8,8 @@ class SingleTimeTrail extends Phaser.Scene{
         this.load.image('sttTileset2', 'assets/spritesheet_objects.png');
         this.load.tilemapTiledJSON('tilemap', `assets/${gameStatus.map}.json`);
         this.load.image('flag', 'assets/flag.png'), 
-        this.load.image(gameStatus.player1.car, `assets/${gameStatus.player1.car}.png`);
+        this.load.image(gameStatus.player1.car.name, `assets/${gameStatus.player1.car.path}.png`);
+        this.load.image('sttQuit', 'assets/quit.png');
         cars.forEach(car=>{
             this.load.image(car.name, `assets/${car.path}.png`)
         })
@@ -35,9 +36,10 @@ class SingleTimeTrail extends Phaser.Scene{
         let timeAccumulator=0;
 
         //Create player
-        player= this.physics.add.sprite(1750, 2048, gameStatus.player1.car)
-        player.setMaxVelocity(330)
+        player= this.physics.add.sprite(1750, 2048, gameStatus.player1.car.name)
+        player.setMaxVelocity(gameStatus.player1.car.maxSpeed)
         player.body.useDamping = true;
+        this.remainingResistence= gameStatus.player1.car.resistence
 
         //Create joystick
         if(device!=='desktop'){
@@ -56,11 +58,18 @@ class SingleTimeTrail extends Phaser.Scene{
             this.accelerationBtn= this.add.image(w-190, h-75, 'singleTimeTrailPs4CrossBtn').setOrigin(0.5).setInteractive().setScrollFactor(0).setAlpha(0.7);
             this.breakBtn= this.add.image(w-80, h-210, 'singleTimeTrailPs4CircleBtn').setOrigin(0.5).setInteractive().setScrollFactor(0).setAlpha(0.7);
         }
+
+        //Quit button
+        const quitBtn= this.add.image(w*0.9, h*0.15, 'sttQuit').setOrigin(0.5).setScrollFactor(0).setInteractive({cursor: 'pointer'});
+        quitBtn.on('pointerdown', ()=>{
+                this.scene.stop();
+                this.scene.start('GameOver')
+        })
         
 
         //Create life bar
         this.lifeFullLife= this.add.rectangle(100, 10, 100, 15, 0xFF0000).setScrollFactor(0).setOrigin(0)
-        this.lifeBar= this.add.rectangle(100,10,gameStatus.player1.resistence, 15, 0x7CFC00).setScrollFactor(0).setOrigin(0)
+        this.lifeBar= this.add.rectangle(100,10,this.remainingResistence, 15, 0x7CFC00).setScrollFactor(0).setOrigin(0)
 
         //Cursor and keys
         cursors= this.input.keyboard.createCursorKeys();
@@ -69,7 +78,7 @@ class SingleTimeTrail extends Phaser.Scene{
 
         walls.setCollisionByExclusion([0, -1]);
         let col= this.physics.add.collider(player, walls, (pl, wall)=>{
-            gameStatus.player1.resistence-=5;
+            this.remainingResistence-=5;
             pl.setBounce(0.8);
         })
         //Cameras
@@ -99,7 +108,7 @@ class SingleTimeTrail extends Phaser.Scene{
                         track: gameStatus.track,
                         lap: gameStatus.player1.lap-1, 
                         time: lapTime, 
-                        car: gameStatus.player1.car,
+                        car: gameStatus.player1.car.name,
                         player: {
                             name: playerStats.username,
                             id: playerStats.id
@@ -193,7 +202,7 @@ class SingleTimeTrail extends Phaser.Scene{
     }
 
     update(){
-
+        
         if(!this.pause){
         this.checkControls()
         
@@ -215,9 +224,9 @@ class SingleTimeTrail extends Phaser.Scene{
     }
 
     //Update life bar
-    this.lifeBar.destroy();
-    this.lifeBar= this.add.rectangle(100,10,gameStatus.player1.resistence*100/this.totalLife, 15, 0x7CFC00).setScrollFactor(0).setOrigin(0)
-    if(gameStatus.player1.resistence<=0){
+    
+    this.lifeBar.setSize(this.remainingResistence*100/this.totalLife, 15);
+    if(this.remainingResistence<=0){
         player.body.stop();
         gameStatus.player1.totalTime=this.elapsedTime;
         this.time.addEvent({
@@ -242,7 +251,7 @@ class SingleTimeTrail extends Phaser.Scene{
     }
 
     checkControls(){
-        const controls = new RaceControls(this, device, player, this.joyStick,this.accelerationBtn, this.breakBtn,this.pointer2, cursors);
+        const controls = new RaceControls(this, device, player, this.joyStick,this.accelerationBtn, this.breakBtn,this.pointer2, cursors, gameStatus.player1.car);
     }
 
 }

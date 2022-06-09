@@ -22,11 +22,12 @@ class GameScene extends Phaser.Scene{
         this.load.image('tileset2', 'assets/spritesheet_objects.png');
         this.load.tilemapTiledJSON('tilemap', `assets/${gameStatus.map}.json`);
         this.load.image('flag', 'assets/flag.png'), 
-        this.load.image(gameStatus.player1.car, `assets/${gameStatus.player1.car}.png`);
+        this.load.image(gameStatus.player1.car.name, `assets/${gameStatus.player1.car.path}.png`);
         this.load.image('flagEndRace', 'assets/flagEndRace.png');
         cars.forEach(car=>{
             this.load.image(car.name, `assets/${car.path}.png`)
         })
+        this.load.image('gsQuit', 'assets/quit.png');
 
         if(device!=='desktop'){
             const url = 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js';
@@ -48,15 +49,16 @@ class GameScene extends Phaser.Scene{
         this.totalLife= gameStatus.player1.resistence
         console.log('Track name: ', gameStatus.track)
         
-        player= this.physics.add.sprite(startingPositions[gameStatus.player1.position].x, startingPositions[gameStatus.player1.position].y, gameStatus.player1.car)
-        player.setMaxVelocity(330)
+        player= this.physics.add.sprite(startingPositions[gameStatus.player1.position].x, startingPositions[gameStatus.player1.position].y, gameStatus.player1.car.name)
+        player.setMaxVelocity(gameStatus.player1.car.maxSpeed)
         player.body.useDamping = true;
+        this.remainingResistance= gameStatus.player1.car.resistence;
 
         //create opponents
         this.opponentsGroup = this.add.group()
         opponents.forEach(opponent=>{
             console.log('opponent: ', opponent)
-            this.opponent= this.opponentsGroup.create(startingPositions[opponent.position].x, startingPositions[opponent.position].y, opponent.stats.car)
+            this.opponent= this.opponentsGroup.create(startingPositions[opponent.position].x, startingPositions[opponent.position].y, opponent.stats.car.name)
             this.opponent.name= opponent.id
             console.log('thisOpponent:', this.opponent)
             this.physics.add.collider(this.opponent, player)
@@ -82,7 +84,7 @@ class GameScene extends Phaser.Scene{
 
         //Create life bar
         this.lifeFullLife= this.add.rectangle(100, 10, 100, 15, 0xFF0000).setScrollFactor(0).setOrigin(0)
-        this.lifeBar= this.add.rectangle(100,10,gameStatus.player1.resistence, 15, 0x7CFC00).setScrollFactor(0).setOrigin(0)
+        this.lifeBar= this.add.rectangle(100,10,100, 15, 0x7CFC00).setScrollFactor(0).setOrigin(0)
 
         //Cursor and keys
         cursors= this.input.keyboard.createCursorKeys();
@@ -94,6 +96,16 @@ class GameScene extends Phaser.Scene{
             gameStatus.player1.resistence-=5;
             pl.setBounce(0.8);
         })
+
+
+        //Quit button
+        const quitBtn= this.add.image(w*0.9, h*0.15, 'gsQuit').setOrigin(0.5).setScrollFactor(0).setInteractive({cursor: 'pointer'});
+        quitBtn.on('pointerdown', ()=>{
+                socket.emit('gameOver', {id: socket.id})
+                this.scene.stop();
+                this.scene.start('GameOver')
+        })
+
         //Cameras
         this.cameras.main.startFollow(player)
         this.cameras.main.setBounds(0,0, 6400, 2560);
@@ -123,7 +135,7 @@ class GameScene extends Phaser.Scene{
                         track: gameStatus.track,
                         lap: gameStatus.player1.lap-1,
                         time: lapTime, 
-                        car: gameStatus.player1.car,
+                        car: gameStatus.player1.car.name,
                         player: {
                             id: playerStats.id, 
                             name: playerStats.username
@@ -277,7 +289,7 @@ class GameScene extends Phaser.Scene{
     }
 
     update(){
-
+        
         if(!pause){
         this.checkControls()
 
@@ -316,8 +328,8 @@ class GameScene extends Phaser.Scene{
 
     //Update life bar
     this.lifeBar.destroy();
-    this.lifeBar= this.add.rectangle(100,10,gameStatus.player1.resistence*100/this.totalLife, 15, 0x7CFC00).setScrollFactor(0).setOrigin(0)
-    if(gameStatus.player1.resistence<=0){
+    this.lifeBar= this.add.rectangle(100,10,this.remainingResistance*100/this.totalLife, 15, 0x7CFC00).setScrollFactor(0).setOrigin(0)
+    if(this.remainingResistance<=0){
         player.body.stop();
         if(laps.length>=1){
             addRace(laps)
@@ -346,7 +358,7 @@ class GameScene extends Phaser.Scene{
     }
 
     checkControls(){
-        const controls = new RaceControls(this, device, player, this.joyStick,this.accelerationBtn, this.breakBtn,this.pointer2, cursors);
+        const controls = new RaceControls(this, device, player, this.joyStick,this.accelerationBtn, this.breakBtn,this.pointer2, cursors, gameStatus.player1.car);
     }
 
     

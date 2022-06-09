@@ -48,6 +48,7 @@ io.on('connection', async (socket)=>{
     
 
     socket.on('connected', (data)=>{
+        
         listOfPlayers.forEach(player=>{
             if(data.id===player.id){
                 player.name= data.name

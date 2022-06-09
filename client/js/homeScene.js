@@ -61,14 +61,44 @@ class HomeScene extends Phaser.Scene{
         this.add.text(w-90, 35, playerStats.coins, {fontSize: 25}).setOrigin(0.5);
 
         blueButton.on('pointerdown', ()=>{
-            typeOfGame='singlePlayer';
-            this.scene.stop();
-            this.scene.start('CarSelection')
+            if(playerStats.garage.length>0){
+                typeOfGame='singlePlayer';
+                this.scene.stop();
+                this.scene.start('CarSelection')
+            }else{
+                const rect= this.add.rectangle(w*0.5, h*0.5, w*0.8, h*0.8, 0xFFFFFF).setAlpha(0.95);
+                const textInfo= this.add.text(w*0.5, h*0.3, 'You have no cars in your garage. Please visit the shop and buy at least one.', {fontSize: 20, color: 'black', wordWrap: { width: w*0.6, useAdvancedWrap: true },lineSpacing: 15}).setOrigin(0.5);
+
+                const confirmBtn= this.add.image(w*0.5, h*0.7, 'blueButton').setOrigin(0.5).setInteractive({cursor: 'pointer'});
+                const confirmText= this.add.text(w*0.5, h*0.7, 'Ok', {fontSize: 20}).setOrigin(0.5);
+                confirmBtn.on('pointerdown', ()=>{
+                    rect.destroy();
+                    textInfo.destroy();
+                    confirmBtn.destroy();
+                    confirmText.destroy();
+                })
+            }
+            
         })
         blueButton2.on('pointerdown', ()=>{
-            typeOfGame='multiplayer'
-            this.scene.stop();
-            this.scene.start('CarSelection')
+            if(playerStats.garage.length>0){
+                typeOfGame='multiplayer'
+                this.scene.stop();
+                this.scene.start('CarSelection')
+            }else{
+                const rect= this.add.rectangle(w*0.5, h*0.5, w*0.8, h*0.8, 0xFFFFFF).setAlpha(0.95);
+                const textInfo= this.add.text(w*0.5, h*0.3, 'You have no cars in your garage. Please visit the shop and buy at least one.', {fontSize: 20, color: 'black', wordWrap: { width: w*0.6, useAdvancedWrap: true }, lineSpacing: 15}).setOrigin(0.5);
+
+                const confirmBtn= this.add.image(w*0.5, h*0.7, 'blueButton').setOrigin(0.5).setInteractive({cursor: 'pointer'});
+                const confirmText= this.add.text(w*0.5, h*0.7, 'Ok', {fontSize: 20}).setOrigin(0.5);
+                confirmBtn.on('pointerdown', ()=>{
+                    rect.destroy();
+                    textInfo.destroy();
+                    confirmBtn.destroy();
+                    confirmText.destroy();
+                })
+            }
+            
         })
         
         blueButton3.on('pointerdown', ()=>{
@@ -87,7 +117,12 @@ class HomeScene extends Phaser.Scene{
             this.scene.stop();
             this.scene.start('LoginScene')
         })
-        logoutBtn.on('pointerout', ()=>logoutBtn.setAlpha(1))
+        logoutBtn.on('pointerout', ()=>logoutBtn.setAlpha(1));
+
+        blueButton4.on('pointerdown', ()=>{
+            this.scene.stop();
+            this.scene.start('Shop');
+        })
 
     }
 

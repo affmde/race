@@ -86,7 +86,7 @@ class WaitingRoom extends Phaser.Scene{
             playerList.forEach((player, i)=>{
                 this.numberText= this.add.text(w*0.15, h*0.25+i*50, i+1, {fontSize : 28})
                 this.text= this.add.text(w*0.2, h*0.25+i*50, player.name, {fontSize : 28});
-                this.text2= this.add.text(w*0.2, h*0.25+i*50+30, player.stats.car, {fontSize : 15});
+                this.text2= this.add.text(w*0.2, h*0.25+i*50+30, player.stats.car.name, {fontSize : 15});
             })
             console.log('playerList:', playerList)
             opponents= playerList.filter(player=>player.id!==socket.id)

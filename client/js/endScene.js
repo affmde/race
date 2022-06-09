@@ -73,7 +73,7 @@ class EndScene extends Phaser.Scene{
             this.nextLevelXp= getLevel().total;
             const isWinner= this.checkIfWinner();
             if(isWinner && playerList.length>1){
-                const coinsGained=Math.floor(Math.random()*playerList.length); 
+                const coinsGained=Math.floor(Math.random()*playerList.length*1000); 
                 playerStats.coins+=coinsGained
                 console.log(`You got ${coinsGained} coins.`);
                 editProfile({id: playerStats.id, coins: playerStats.coins});

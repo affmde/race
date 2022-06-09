@@ -221,3 +221,20 @@ const editProfile = async (info) =>{
         console.log(err)
     }
 }
+
+
+const buyCar = async (car) =>{
+    const requestOptions= {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(car)
+    }
+
+    try{
+        const response= await fetch('http://localhost:3000/users/buyCar', requestOptions);
+        const data= await response.json();
+        console.log('car bought data: ', data)
+    }catch(err){
+        console.log(err)
+    }
+}

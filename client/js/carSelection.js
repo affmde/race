@@ -52,7 +52,7 @@ class CarSelection extends Phaser.Scene{
         right.on('pointerdown', ()=>{
             right.setAlpha(0.6)
             this.i++;
-            if(this.i>cars.length-1){
+            if(this.i>playerStats.garage.length-1){
                 this.i=0
             }
         });
@@ -62,7 +62,7 @@ class CarSelection extends Phaser.Scene{
             left.setAlpha(0.6);
             this.i--;
             if(this.i<0){
-                this.i=cars.length-1
+                this.i=playerStats.garage-1
             }
         });
         left.on('pointerup', ()=>left.setAlpha(1));
@@ -70,9 +70,8 @@ class CarSelection extends Phaser.Scene{
 
         confirmBg.on('pointerdown', ()=>{
             confirmBg.setAlpha(0.4);
-            gameStatus.player1.car=cars[this.i].name;
-            console.log('status: ', gameStatus)
-
+            gameStatus.player1.car=playerStats.garage[this.i];
+            
             if(typeOfGame==='multiplayer'){
                 this.scene.stop();
                 this.scene.start('WaitingRoom')
@@ -84,13 +83,13 @@ class CarSelection extends Phaser.Scene{
         confirmBg.on('pointerup', ()=>confirmBg.setAlpha(0.8));
         confirmBg.on('pointerout', ()=>confirmBg.setAlpha(0.8));
 
-        this.carName= this.add.text(w*0.5, h*0.15, cars[this.i].name, {fontSize: 30}).setOrigin(0.5, 0)
-        this.carPic= this.add.image(w*0.5, h*0.5, cars[this.i].name).setScale(3)
+        this.carName= this.add.text(w*0.5, h*0.15, playerStats.garage[this.i].name, {fontSize: 30}).setOrigin(0.5, 0)
+        this.carPic= this.add.image(w*0.5, h*0.5, playerStats.garage[this.i].name).setScale(3)
 
     }
 
     update(){
-        this.carName.setText(cars[this.i].name);
-        this.carPic.setTexture(cars[this.i].name);
+        this.carName.setText(playerStats.garage[this.i].name);
+        this.carPic.setTexture(playerStats.garage[this.i].name);
     }
 }

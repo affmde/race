@@ -151,6 +151,7 @@ class LoginScene extends Phaser.Scene{
             const response = await fetch('/users/login', requestOptions);
             const data= await response.json();
             user= data;
+            console.log('user: ', user)
             //Load player data
             playerStats.coins= user.coins;
             playerStats.experience= user.experience;
@@ -161,6 +162,7 @@ class LoginScene extends Phaser.Scene{
             playerStats.id= user.id
             playerStats.wins= user.wins;
             playerStats.driver= user.driver;
+            playerStats.garage= user.garage
             
             if(!user.token){
                 this.wrongInput.style.display= 'block';
