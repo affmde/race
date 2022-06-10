@@ -30,7 +30,7 @@ class SingleTimeTrail extends Phaser.Scene{
         const road= map.createLayer('Road', tileset);
         const walls= map.createLayer('walls', tileset);
         const objects= map.createLayer('objects', tileset2);
-        this.totalLife= gameStatus.player1.resistence
+        this.totalLife= gameStatus.player1.car.resistence
         this.laps=[];
         let lapTime=0;
         let timeAccumulator=0;

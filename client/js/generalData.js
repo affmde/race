@@ -10,6 +10,7 @@ const playerStats={
     wins: 0,
     consecutiveLoginDays: 0,
     garage:[],
+    objectivesCompleted: []
 }
 
 const startingPositions=[
@@ -334,6 +335,73 @@ drivers=[
     {
         id: 4,
         path: 'driver5'
+    }
+]
+
+
+const listOfObjectives=[
+    {
+        id: 0,
+        name: 'Login today',
+        reward: 5,
+        status:{
+            completed: false,
+            received: false
+        }
+    },
+    {
+        id: 1,
+        name: 'Play a single player race.',
+        reward: 10,
+        status:{
+            completed: false,
+            received: false
+        },
+    },
+    {
+        id: 2,
+        name: 'Play a multiplayer Race',
+        reward: 10,
+        status:{
+            completed: false,
+            received: false
+        },
+    },
+    {
+        id: 3,
+        name: 'Win a race.',
+        reward: 100,
+        status:{
+            completed: false,
+            received: false
+        }
+    },
+    {
+        id: 4,
+        name: 'Complete 20 races',
+        reward: 60,
+        status:{
+            completed: false,
+            received: false
+        }
+    },
+    {
+        id: 5,
+        name: 'Complete 100 laps.',
+        reward: 60,
+        status:{
+            completed: false,
+            received: false
+        }
+    },
+    {
+        id: 6,
+        name: 'Buy a car.',
+        reward: 10,
+        status:{
+            completed: false,
+            received: false
+        }
     }
 ]
 

@@ -41,14 +41,16 @@ class HomeScene extends Phaser.Scene{
 			padding: { left: null }
 		}).setOrigin(0.5);
 
-        const blueButton= this.add.image(w*0.45, h*0.45, 'blueButton').setOrigin(0.5).setAlpha(0.9).setInteractive({cursor: "pointer" })
+        const blueButton= this.add.image(w*0.45, h*0.45, 'blueButton').setOrigin(0.5).setAlpha(0.9).setInteractive({cursor: "pointer" }).setScale(0.8)
         const singlePlayerTxt= this.add.text(w*0.45, h*0.45, 'Single player', {fontSize: 22}).setOrigin(0.5)
-        const blueButton2= this.add.image(w*0.8, h*0.45, 'blueButton').setOrigin(0.5).setAlpha(0.9).setInteractive({cursor: "pointer" })
+        const blueButton2= this.add.image(w*0.8, h*0.45, 'blueButton').setOrigin(0.5).setAlpha(0.9).setInteractive({cursor: "pointer" }).setScale(0.8)
         const multiplayerTxt= this.add.text(w*0.8, h*0.45, 'Multiplayer', {fontSize: 22}).setOrigin(0.5);
-        const blueButton3= this.add.image(w*0.45, h*0.7, 'blueButton').setOrigin(0.5).setAlpha(0.9).setInteractive({cursor: "pointer" })
+        const blueButton3= this.add.image(w*0.45, h*0.7, 'blueButton').setOrigin(0.5).setAlpha(0.9).setInteractive({cursor: "pointer" }).setScale(0.8)
         const profileTxt= this.add.text(w*0.45, h*0.7, 'Profile', {fontSize: 22}).setOrigin(0.5);
-        const blueButton4= this.add.image(w*0.8, h*0.7, 'yellowButton').setOrigin(0.5).setAlpha(0.9).setInteractive({cursor: "pointer" })
+        const blueButton4= this.add.image(w*0.8, h*0.7, 'yellowButton').setOrigin(0.5).setAlpha(0.9).setInteractive({cursor: "pointer" }).setScale(0.8);
         const shopTxt= this.add.text(w*0.8, h*0.7, 'Shop', {fontSize: 22}).setOrigin(0.5);
+        const objectivesBtn= this.add.image(w*0.62, h*0.9, 'blueButton').setOrigin(0.5).setAlpha(0.9).setInteractive({cursor: "pointer" }).setScale(0.8);
+        const objectivesTxt= this.add.text(w*0.62, h*0.9, 'Objectives', {fontSize: 22}).setOrigin(0.5);
         const logoutBtn= this.add.image(w-20, 20, 'homeLogoutBtn').setOrigin(1, 0).setInteractive({cursor: 'pointer'});
         this.driverPic= this.add.image(w*0.2, h*0.6, playerStats.driver).setOrigin(0.5);
         this.actualXp= playerStats.experience-getLevel().before;
@@ -57,8 +59,8 @@ class HomeScene extends Phaser.Scene{
         this.star= this.add.image(30, 30, 'homeStar').setOrigin(0.5).setScale(0.7).setDepth(5);
         this.xp= this.add.rectangle(30, 20, this.actualXp*300/this.totalXpCalc, 30, 0xDAA520).setOrigin(0)
         this.level= this.add.text(30, 30, playerStats.level, {fontSize: 30}).setOrigin(0.5).setDepth(6);
-        this.add.image(w-120, 35, 'homeCoins').setOrigin(0.5);
-        this.add.text(w-90, 35, playerStats.coins, {fontSize: 25}).setOrigin(0.5);
+        this.add.image(w-200, 35, 'homeCoins').setOrigin(0.5);
+        this.add.text(w-150, 35, playerStats.coins, {fontSize: 25}).setOrigin(0.5);
 
         blueButton.on('pointerdown', ()=>{
             if(playerStats.garage.length>0){
@@ -124,6 +126,11 @@ class HomeScene extends Phaser.Scene{
             this.scene.start('Shop');
         })
 
+        objectivesBtn.on('pointerdown', ()=>{
+            this.scene.stop();
+            this.scene.start('Objectives')
+        })
+
     }
 
     update(){
@@ -135,9 +142,19 @@ class HomeScene extends Phaser.Scene{
             const laps= await getLaps();
             laps.forEach(lap=>{
                 if(lap.track==='Fast Lain'){
-                    lapsByTrack.fastLaine.push(lap)
+                    const alreadyLap= lapsByTrack.fastLaine.find(l=>l._id===lap._id)
+                    if(!alreadyLap){
+                        lapsByTrack.fastLaine.push(lap)
+                    }else{
+                        //console.log('ALready exists')
+                    }
                 }else if(lap.track==='Last Diamond'){
-                    lapsByTrack.lastDiamond.push(lap)
+                    const alreadyLap= lapsByTrack.lastDiamond.find(l=>lap._id===l._id);
+                    if(!alreadyLap){
+                        lapsByTrack.lastDiamond.push(lap)
+                    }else{
+                        //console.log('Already exists')
+                    }
                 }else{
                     return
                 }

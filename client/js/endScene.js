@@ -100,6 +100,7 @@ class EndScene extends Phaser.Scene{
             gameStatus.player1.ready=false;
             pause=true
             gameStatus.player1.totalTime=0
+            listOfObjectives[2].status.completed=true;
             if(typeOfGame==='multiplayer'){
                 saveReward();
                 if(this.checkIfWinner()){

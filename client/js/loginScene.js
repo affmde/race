@@ -4,7 +4,6 @@ let user={
 var date = new Date();
 date.setDate(date.getDate() + 7);
 
-console.log('date: ' ,date);
 class LoginScene extends Phaser.Scene{
     constructor(){
         super({key: 'LoginScene'})
@@ -46,8 +45,6 @@ class LoginScene extends Phaser.Scene{
             let inputUsername = this.element.getChildByName('name');
             let inputPassword = this.element.getChildByName('password');
             this.wrongInput= this.element.getChildByID('wrongInput');
-            console.log('this.wrongInput', this.wrongInput)
-            console.log('passinp', inputPassword)
             this.element.on('click', (e)=>{
                 if (e.target.name === 'loginButton'){
                     this.usernameLogin= inputUsername.value;
@@ -151,7 +148,7 @@ class LoginScene extends Phaser.Scene{
             const response = await fetch('/users/login', requestOptions);
             const data= await response.json();
             user= data;
-            console.log('user: ', user)
+    
             //Load player data
             playerStats.coins= user.coins;
             playerStats.experience= user.experience;
@@ -162,7 +159,8 @@ class LoginScene extends Phaser.Scene{
             playerStats.id= user.id
             playerStats.wins= user.wins;
             playerStats.driver= user.driver;
-            playerStats.garage= user.garage
+            playerStats.garage= user.garage,
+            playerStats.objectivesCompleted= user.objectivesCompleted
             
             if(!user.token){
                 this.wrongInput.style.display= 'block';

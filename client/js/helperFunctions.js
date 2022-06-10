@@ -231,10 +231,27 @@ const buyCar = async (car) =>{
     }
 
     try{
-        const response= await fetch('http://localhost:3000/users/buyCar', requestOptions);
+        const response= await fetch('/users/buyCar', requestOptions);
         const data= await response.json();
         console.log('car bought data: ', data)
     }catch(err){
         console.log(err)
     }
+}
+
+const addObjective = async (obj) => {
+    const requestOptions= {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(obj)
+    }
+
+    try{
+        const response= await fetch('http://localhost:3000/users/addObjective', requestOptions);
+        const data= await response.json();
+        console.log('Objective added data: ', data)
+    }catch(err){
+        console.log(err)
+    }
+
 }

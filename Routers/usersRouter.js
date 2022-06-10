@@ -18,7 +18,8 @@ usersRouter.post('/newUser', async (req, res)=>{
         wins: 0,
         races: [],
         driver: 'driver1',
-        garage:[]
+        garage:[],
+        objectivesCompleted: []
         
     }
     const saveUser= new Users(newUser);
@@ -69,7 +70,8 @@ usersRouter.post('/login', async (req, res)=>{
         wins: user.wins,
         driver: user.driver,
         lastLogin: updatelogin.lastLogin,
-        garage: user.garage
+        garage: user.garage,
+        objectivesCompleted: user.objectivesCompleted
     }
 
 
@@ -132,9 +134,24 @@ usersRouter.post('/infoEdit', async (req, res)=>{
 usersRouter.post('/buyCar', async (req, res)=>{
     const body= req.body;
     const id= body.id;
-    console.log('buy car body',body)
+    
     try{
         const user= await Users.findByIdAndUpdate(id, {$push:{garage: body.car}}, {new: true})
+            .then(docs=>res.status(200).send(docs))
+    }catch(err){
+        res.status(401).json({ error: err })
+    }
+    
+})
+
+
+
+usersRouter.post('/addObjective', async (req, res)=>{
+    const body= req.body;
+    const id= body.id;
+    
+    try{
+        const user= await Users.findByIdAndUpdate(id, {$push:{objectivesCompleted: body.objective}}, {new: true})
             .then(docs=>res.status(200).send(docs))
     }catch(err){
         res.status(401).json({ error: err })

@@ -19,7 +19,7 @@ config={
         gravity: { y: 0 },
       }
     },
-    scene: [LoginScene, HomeScene, Shop,  RaceFull, CarSelection, Profile, SingleEndScene, DriverSelection, TrackSelection, WaitingRoom, GameOver, GameScene, SingleTimeTrail, EndScene]
+    scene: [LoginScene, Objectives,  HomeScene, Shop,  RaceFull, CarSelection, Profile, SingleEndScene, DriverSelection, TrackSelection, WaitingRoom, GameOver, GameScene, SingleTimeTrail, EndScene]
 }
 
 const game = new Phaser.Game(config);

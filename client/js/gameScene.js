@@ -18,9 +18,9 @@ class GameScene extends Phaser.Scene{
 
     preload(){
         
-        this.load.image('tileset', 'assets/tileset.png');
-        this.load.image('tileset2', 'assets/spritesheet_objects.png');
-        this.load.tilemapTiledJSON('tilemap', `assets/${gameStatus.map}.json`);
+        this.load.image('gstileset', 'assets/tileset.png');
+        this.load.image('gstileset2', 'assets/spritesheet_objects.png');
+        this.load.tilemapTiledJSON('gstilemap', `assets/${gameStatus.map}.json`);
         this.load.image('flag', 'assets/flag.png'), 
         this.load.image(gameStatus.player1.car.name, `assets/${gameStatus.player1.car.path}.png`);
         this.load.image('flagEndRace', 'assets/flagEndRace.png');
@@ -39,14 +39,14 @@ class GameScene extends Phaser.Scene{
 
     create(){
         this.stillRacing=true;
-        const map = this.make.tilemap({ key: 'tilemap', tileWidth:32, tileHeight: 32 })
-        const tileset = map.addTilesetImage('spritesheet_tiles', 'tileset');
-        const tileset2= map.addTilesetImage('spritesheet_objects', 'tileset2');
+        const map = this.make.tilemap({ key: 'gstilemap', tileWidth:32, tileHeight: 32 })
+        const tileset = map.addTilesetImage('spritesheet_tiles', 'gstileset');
+        const tileset2= map.addTilesetImage('spritesheet_objects', 'gstileset2');
         const grass= map.createLayer('grass', tileset2);
         const road= map.createLayer('Road', tileset);
         const walls= map.createLayer('walls', tileset);
         const objects= map.createLayer('objects', tileset2);
-        this.totalLife= gameStatus.player1.resistence
+        this.totalLife= gameStatus.player1.car.resistence
         console.log('Track name: ', gameStatus.track)
         
         player= this.physics.add.sprite(startingPositions[gameStatus.player1.position].x, startingPositions[gameStatus.player1.position].y, gameStatus.player1.car.name)
@@ -93,7 +93,7 @@ class GameScene extends Phaser.Scene{
 
         walls.setCollisionByExclusion([0, -1]);
         let col= this.physics.add.collider(player, walls, (pl, wall)=>{
-            gameStatus.player1.resistence-=5;
+            this.remainingResistance-=5;
             pl.setBounce(0.8);
         })
 
@@ -327,8 +327,8 @@ class GameScene extends Phaser.Scene{
     }
 
     //Update life bar
-    this.lifeBar.destroy();
-    this.lifeBar= this.add.rectangle(100,10,this.remainingResistance*100/this.totalLife, 15, 0x7CFC00).setScrollFactor(0).setOrigin(0)
+    
+    this.lifeBar.setSize(this.remainingResistance*100/this.totalLife, 15);
     if(this.remainingResistance<=0){
         player.body.stop();
         if(laps.length>=1){

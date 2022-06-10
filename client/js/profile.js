@@ -38,6 +38,7 @@ class Profile extends Phaser.Scene{
         this.add.text(w*0.5, h*0.75, `XP: ${playerStats.experience}`).setOrigin(0, 0.5);
         this.add.text(w*0.5, h*0.8, `Coins: ${playerStats.coins}`).setOrigin(0, 0.5);
         this.add.text(w*0.5, h*0.85, `Total wins: ${playerStats.wins}`).setOrigin(0, 0.5);
+        this.add.text(w*0.5, h*0.9, `Cars owned: ${playerStats.garage.length}`).setOrigin(0, 0.5);
         this.nameEditBtn=this.add.image(w*0.9, h*0.3, 'profileEdit').setOrigin(0.5).setInteractive({cursor: 'pointer'});
         this.usernameEditBtn=this.add.image(w*0.9, h*0.4, 'profileEdit').setOrigin(0.5).setInteractive({cursor: 'pointer'});
         this.emailEditBtn=this.add.image(w*0.9, h*0.5, 'profileEdit').setOrigin(0.5).setInteractive({cursor: 'pointer'});

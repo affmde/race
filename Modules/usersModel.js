@@ -37,6 +37,9 @@ const usersSchema = new mongoose.Schema({
   },
   garage:{
     type: Array
+  },
+  objectivesCompleted: {
+    type: Array
   }
 });
 
