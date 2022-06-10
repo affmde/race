@@ -247,7 +247,7 @@ const addObjective = async (obj) => {
     }
 
     try{
-        const response= await fetch('http://localhost:3000/users/addObjective', requestOptions);
+        const response= await fetch('/users/addObjective', requestOptions);
         const data= await response.json();
         console.log('Objective added data: ', data)
     }catch(err){
