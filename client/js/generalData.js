@@ -253,6 +253,18 @@ const cars=[
     },
     {
         id: 9,
+        name: 'Toyota',
+        path: 'toyota',
+        acceleration: 140,
+        maxSpeed: 320,
+        break: 0.5,
+        aerodynamic: 135,
+        resistence:3000,
+        price: 15000,
+        levelRequire: 4
+    },
+    {
+        id: 10,
         name: 'Police',
         path: 'Police',
         acceleration: 100,
@@ -264,7 +276,7 @@ const cars=[
         levelRequire: 5
     },
     {
-        id: 10,
+        id: 11,
         name: 'Taxi',
         path: 'Taxi',
         acceleration: 95,
@@ -276,7 +288,7 @@ const cars=[
         levelRequire: 5
     },
     {
-        id: 11,
+        id: 12,
         name: 'Orange Racer',
         path: 'orange_racer',
         acceleration: 140,
@@ -288,7 +300,19 @@ const cars=[
         levelRequire: 7
     },
     {
-        id: 12,
+        id: 13,
+        name: 'Ford Fiesta',
+        path: 'ford_fiesta',
+        acceleration: 150,
+        maxSpeed: 360,
+        break: 0.4,
+        aerodynamic: 140,
+        resistence:3500,
+        price: 30000,
+        levelRequire: 8
+    },
+    {
+        id: 14,
         name: 'Audi',
         path: 'audi',
         acceleration: 150,
@@ -300,7 +324,7 @@ const cars=[
         levelRequire: 9
     },
     {
-        id: 13,
+        id: 15,
         name: "Black Viper",
         path: "blackViper",
         acceleration: 200,
@@ -310,6 +334,18 @@ const cars=[
         resistence:2500,
         price: 75000,
         levelRequire: 10
+    },
+    {
+        id: 16,
+        name: "Hypersport",
+        path: "hypersport",
+        acceleration: 240,
+        maxSpeed: 440,
+        break: 0.4,
+        aerodynamic: 120,
+        resistence:3000,
+        price: 115000,
+        levelRequire: 12
     },
 
 ]

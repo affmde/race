@@ -75,6 +75,18 @@ const getLevel = () =>{
             total: 24000,
             before: 21000
         }
+    }else if(playerStats.experience<=29000){
+        return{
+            level: 11,
+            total: 29000,
+            before: 24000
+        }
+    }else if(playerStats.experience<=35000){
+        return{
+            level: 12,
+            total: 35000,
+            before: 29000
+        }
     }
 }
 

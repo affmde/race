@@ -47,7 +47,6 @@ class GameScene extends Phaser.Scene{
         const walls= map.createLayer('walls', tileset);
         const objects= map.createLayer('objects', tileset2);
         this.totalLife= gameStatus.player1.car.resistence
-        console.log('Track name: ', gameStatus.track)
         
         player= this.physics.add.sprite(startingPositions[gameStatus.player1.position].x, startingPositions[gameStatus.player1.position].y, gameStatus.player1.car.name)
         player.setMaxVelocity(gameStatus.player1.car.maxSpeed)
@@ -57,13 +56,10 @@ class GameScene extends Phaser.Scene{
         //create opponents
         this.opponentsGroup = this.add.group()
         opponents.forEach(opponent=>{
-            console.log('opponent: ', opponent)
             this.opponent= this.opponentsGroup.create(startingPositions[opponent.position].x, startingPositions[opponent.position].y, opponent.stats.car.name)
             this.opponent.name= opponent.id
-            console.log('thisOpponent:', this.opponent)
             this.physics.add.collider(this.opponent, player)
         })
-        console.log('this.oppoentGroup' ,this.opponentsGroup)
 
         //Create joystick
         if(device!=='desktop'){
@@ -176,7 +172,6 @@ class GameScene extends Phaser.Scene{
 
         //Timer
         this.startTime= new Date();
-        console.log(this.startTime)
         
         this.gameTimer= this.time.addEvent({
             delay: 100,
@@ -207,7 +202,6 @@ class GameScene extends Phaser.Scene{
             checkpoint3: true,
         }
         map.getObjectLayer('checkpoints').objects.forEach((checkpoint, i)=>{
-            console.log(checkpoint)
             this.checkpointRect= this.add.rectangle(checkpoint.x, checkpoint.y, checkpoint.width, checkpoint.height, 0x000000).setOrigin(0).setAlpha(0.000001);
             this.physics.add.existing(this.checkpointRect);
             //Checkpoints overlap
@@ -268,7 +262,6 @@ class GameScene extends Phaser.Scene{
         })
 
         socket.on('playerEndRace', data=>{
-            console.log('playerEndRace data: ' ,data)
             
             if(data.position===1){
                 this.add.image(175, 60, 'flagEndRace').setOrigin(0.5).setScrollFactor(0);
