@@ -340,68 +340,149 @@ drivers=[
 
 
 const listOfObjectives=[
-    {
-        id: 0,
-        name: 'Login today',
-        reward: 5,
-        status:{
-            completed: false,
-            received: false
-        }
-    },
-    {
-        id: 1,
-        name: 'Play a single player race.',
-        reward: 10,
-        status:{
-            completed: false,
-            received: false
+    [
+        {
+            id: 0,
+            name: 'Login today',
+            reward: 5,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 0
         },
-    },
-    {
-        id: 2,
-        name: 'Play a multiplayer Race',
-        reward: 10,
-        status:{
-            completed: false,
-            received: false
+        {
+            id: 1,
+            name: 'Play a single player race.',
+            reward: 10,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 0
         },
-    },
-    {
-        id: 3,
-        name: 'Win a race.',
-        reward: 100,
-        status:{
-            completed: false,
-            received: false
+        {
+            id: 2,
+            name: 'Play a multiplayer Race',
+            reward: 10,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 0
+        },
+        {
+            id: 3,
+            name: 'Win a race.',
+            reward: 100,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 0
+        },
+        {
+            id: 4,
+            name: 'Complete 20 races',
+            reward: 60,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 20
+        },
+        {
+            id: 5,
+            name: 'Complete 100 laps.',
+            reward: 60,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 100
+        },
+        {
+            id: 6,
+            name: 'Buy a car.',
+            reward: 10,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 0
         }
-    },
-    {
-        id: 4,
-        name: 'Complete 20 races',
-        reward: 60,
-        status:{
-            completed: false,
-            received: false
+    ],
+    [
+        {
+            id: 7,
+            name: 'Login today',
+            reward: 5,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 0
+        },
+        {
+            id: 8,
+            name: 'Play 100 race.',
+            reward: 850,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 100
+        },
+        {
+            id: 9,
+            name: 'Play a multiplayer Race',
+            reward: 10,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 0
+        },
+        {
+            id: 10,
+            name: 'Win 20 races.',
+            reward: 100,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 20
+        },
+        {
+            id: 11,
+            name: 'Complete 20 races',
+            reward: 1000,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 20
+        },
+        {
+            id: 12,
+            name: 'Complete 500 laps.',
+            reward: 1500,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 500
+        },
+        {
+            id: 6,
+            name: 'Buy 3 car.',
+            reward: 10,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 2
         }
-    },
-    {
-        id: 5,
-        name: 'Complete 100 laps.',
-        reward: 60,
-        status:{
-            completed: false,
-            received: false
-        }
-    },
-    {
-        id: 6,
-        name: 'Buy a car.',
-        reward: 10,
-        status:{
-            completed: false,
-            received: false
-        }
-    }
+    ]
 ]
 

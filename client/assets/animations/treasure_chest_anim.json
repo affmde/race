@@ -1,0 +1,112 @@
+{
+    "anims": [
+        {
+            "key": "treasure_chest_open",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile000"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile001"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile002"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile003"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile004"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile005"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile006"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile007"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile008"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile009"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile010"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile011"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile012"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile013"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile014"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile015"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile016"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile017"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile018"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile019"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile020"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile021"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile022"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile023"
+                },
+                {
+                    "key": "treasure_chest",
+                    "frame": "tile024"
+                }
+            ]
+        }
+    ]
+}

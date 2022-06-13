@@ -4,7 +4,6 @@ class SingleEndScene extends Phaser.Scene{
     }
 
     init(data){
-        console.log('initData', data)
         this.lapTime= data.lap[0].time
     }
 
@@ -51,7 +50,8 @@ class SingleEndScene extends Phaser.Scene{
 
         this.time.delayedCall(2000, ()=>{
             this.coinsReward()
-            this.playerXp= playerStats.experience;
+            this.totalXpCalc= getLevel().total-getLevel().before;
+            this.playerXp= playerStats.experience-getLevel().before;
             this.nextLevelXp= getLevel().total;
             playerStats.experience+=xpReward(this.compareLaps(gameStatus.track, this.lapTime, 0), this.compareLaps(gameStatus.track, this.lapTime, 1), this.compareLaps(gameStatus.track, this.lapTime, 2), true, false);
             const rectFullXp= this.add.rectangle(200, h*0.9, 400, 30, 0xDCDCDC).setOrigin(0);
@@ -75,11 +75,9 @@ class SingleEndScene extends Phaser.Scene{
 
     update(){
         if(this.updateXp){
-            while(this.playerXp !== playerStats.experience){
+            while(this.playerXp !== playerStats.experience-getLevel().before){
                 this.playerXp++
-                this.nowXp.destroy();
-                this.nowXp= this.add.rectangle(200, h*0.9, this.playerXp*400/this.nextLevelXp, 30, 0xDAA520).setOrigin(0);
-                console.log(playerStats.experience)
+                this.nowXp.setSize(this.playerXp*400/this.totalXpCalc, 30).setOrigin(0);
             }
         }
     }
@@ -107,7 +105,7 @@ class SingleEndScene extends Phaser.Scene{
         const lap1= this.compareLaps(gameStatus.track, this.lapTime, 0);
         const lap2= this.compareLaps(gameStatus.track, this.lapTime, 1);
         const lap3= this.compareLaps(gameStatus.track, this.lapTime, 2)
-        console.log(lap1, lap2, lap3)
+        
         if(lap1){
             const rand= Math.floor(Math.random()*200);
             playerStats.coins+=rand;

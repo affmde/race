@@ -99,6 +99,21 @@ const xpReward = (bestLap1, bestLap2, bestLap3, finishedRace, winner) =>{
 }
 
 
+const dateConverter = (date) =>{
+    const d= new Date(date)
+    const dString = d.toDateString();
+    if(playerStats.loginDays.includes(dString)){
+        listOfObjectives[playerStats.objectivesLevel][0].status.received=true;
+    }else{
+        playerStats.loginDays.push(dString);
+        listOfObjectives[playerStats.objectivesLevel][0].status.completed=true;
+        addLoginDay({id: playerStats.id, day: dString});
+    }
+    
+}
+
+
+
 //Fetch funcitons
 const saveLap= async (lap)=>{
     const body= {
@@ -118,7 +133,6 @@ const saveLap= async (lap)=>{
     try{
         const response= await fetch('/tracks/newLap', requestOptions);
         const data = await response.json();
-        console.log(data)
     }catch(err){
         console.log(err)
     }
@@ -139,8 +153,6 @@ const saveRace= async(race) =>{
     try{
         const response= await fetch('/users/addRace', requestOptions);
         const data= await response.json();
-        console.log('addRace data: ', data)
-
     }catch(err){
         console.log(err)
     }
@@ -181,8 +193,6 @@ const saveReward = async () =>{
     try{
         const response= await fetch('/users/updateReward', requestOptions);
         const data= await response.json();
-        console.log('addRace data: ', data)
-
     }catch(err){
         console.log(err)
     }
@@ -200,7 +210,6 @@ const addWin = async () =>{
     try{
         const response= await fetch('/users/addWin', requestOptions);
         const data= await response.json();
-        console.log('addRace data: ', data)
     }catch(err){
         console.log(err)
     }
@@ -216,7 +225,6 @@ const editProfile = async (info) =>{
     try{
         const response= await fetch('/users/infoEdit', requestOptions);
         const data= await response.json();
-        console.log('addRace data: ', data)
     }catch(err){
         console.log(err)
     }
@@ -233,7 +241,6 @@ const buyCar = async (car) =>{
     try{
         const response= await fetch('/users/buyCar', requestOptions);
         const data= await response.json();
-        console.log('car bought data: ', data)
     }catch(err){
         console.log(err)
     }
@@ -249,9 +256,26 @@ const addObjective = async (obj) => {
     try{
         const response= await fetch('/users/addObjective', requestOptions);
         const data= await response.json();
-        console.log('Objective added data: ', data)
     }catch(err){
         console.log(err)
     }
 
 }
+
+
+const addLoginDay = async (obj) =>{
+    const requestOptions= {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(obj)
+    }
+
+    try{
+        const response= await fetch('/users/addLoginDay', requestOptions);
+        const data= await response.json();
+    }catch(err){
+        console.log(err)
+    }
+}
+
+

@@ -27,7 +27,7 @@ class HomeScene extends Phaser.Scene{
     create(){
         playerStats.level=getLevel().level    
         console.log('player: ', playerStats);
-
+        dateConverter(user.lastLogin)
         this.fulfillLaps()
         //Page build
         const homeScreen = this.add.image(0,0,'homeScreen').setOrigin(0).setAlpha(0.4);

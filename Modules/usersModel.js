@@ -40,6 +40,12 @@ const usersSchema = new mongoose.Schema({
   },
   objectivesCompleted: {
     type: Array
+  },
+  objectivesLevel:{
+    type: Number
+  },
+  loginDays:{
+    type: Array
   }
 });
 

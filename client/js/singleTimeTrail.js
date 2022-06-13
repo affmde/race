@@ -151,7 +151,6 @@ class SingleTimeTrail extends Phaser.Scene{
 
         //Timer
         this.startTime= new Date();
-        console.log(this.startTime)
         
         this.gameTimer= this.time.addEvent({
             delay: 100,

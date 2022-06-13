@@ -19,7 +19,9 @@ usersRouter.post('/newUser', async (req, res)=>{
         races: [],
         driver: 'driver1',
         garage:[],
-        objectivesCompleted: []
+        objectivesCompleted: [],
+        objectivesLevel: 0,
+        loginDays: []
         
     }
     const saveUser= new Users(newUser);
@@ -69,9 +71,11 @@ usersRouter.post('/login', async (req, res)=>{
         email: user.email,
         wins: user.wins,
         driver: user.driver,
-        lastLogin: updatelogin.lastLogin,
+        lastLogin: user.lastLogin,
         garage: user.garage,
-        objectivesCompleted: user.objectivesCompleted
+        objectivesCompleted: user.objectivesCompleted,
+        objectivesLevel: user.objectivesLevel,
+        loginDays: user.loginDays
     }
 
 
@@ -152,6 +156,20 @@ usersRouter.post('/addObjective', async (req, res)=>{
     
     try{
         const user= await Users.findByIdAndUpdate(id, {$push:{objectivesCompleted: body.objective}}, {new: true})
+            .then(docs=>res.status(200).send(docs))
+    }catch(err){
+        res.status(401).json({ error: err })
+    }
+    
+})
+
+
+
+usersRouter.post('/addLoginDay', async (req, res)=>{
+    const body= req.body;
+    const id= body.id;
+    try{
+        const user= await Users.findByIdAndUpdate(id, {$push:{loginDays: body.day}}, {new: true})
             .then(docs=>res.status(200).send(docs))
     }catch(err){
         res.status(401).json({ error: err })

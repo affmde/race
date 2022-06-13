@@ -160,7 +160,11 @@ class LoginScene extends Phaser.Scene{
             playerStats.wins= user.wins;
             playerStats.driver= user.driver;
             playerStats.garage= user.garage,
-            playerStats.objectivesCompleted= user.objectivesCompleted
+            playerStats.objectivesCompleted= user.objectivesCompleted,
+            playerStats.objectivesLevel= user.objectivesLevel,
+            playerStats.loginDays= user.loginDays
+
+            
             
             if(!user.token){
                 this.wrongInput.style.display= 'block';

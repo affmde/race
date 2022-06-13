@@ -69,7 +69,8 @@ class EndScene extends Phaser.Scene{
         })
 
         this.time.delayedCall(7500, ()=>{
-            this.playerXp= playerStats.experience;
+            this.totalXpCalc= getLevel().total-getLevel().before;
+            this.playerXp= playerStats.experience-getLevel().before;
             this.nextLevelXp= getLevel().total;
             const isWinner= this.checkIfWinner();
             if(isWinner && playerList.length>1){
@@ -122,10 +123,10 @@ class EndScene extends Phaser.Scene{
 
     update(){
         if(this.updateXp){
-            while(this.playerXp !== playerStats.experience){
+            while(this.playerXp !== playerStats.experience-getLevel().before){
                 this.playerXp+=0.5;
-                this.nowXp.destroy();
-                this.nowXp= this.add.rectangle(200, h*0.75, this.playerXp*400/this.nextLevelXp, 30, 0xDAA520).setOrigin(0);
+                
+                this.nowXp.setSize(this.playerXp*400/this.totalXpCalc, 30).setOrigin(0);
                 console.log(playerStats.experience)
             }
         }
