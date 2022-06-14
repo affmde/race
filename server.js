@@ -62,6 +62,7 @@ io.on('connection', async (socket)=>{
         io.in('room1').emit('clients', listOfPlayers)
         io.in('room1').emit('clientsCar', ({id: data.id, car: data.car}))
         socket.emit('trackNumber', trackNumber)
+        console.log('trackNumber: ', trackNumber)
     })
 
     socket.on('disconnect', ()=>{
@@ -82,7 +83,7 @@ io.on('connection', async (socket)=>{
 
     socket.on('startPlay', data=>{
         raceOn=true
-        io.to('room1').emit('play', data)
+        io.to('room1').emit('play', {data: data, map: trackNumber})
     })
 
     socket.on('playerMoving', (data)=>{

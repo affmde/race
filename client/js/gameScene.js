@@ -16,11 +16,20 @@ class GameScene extends Phaser.Scene{
         super({key: 'GameScene'})
     }
 
+    init(data){
+        console.log('initData' ,data.map)
+        this.map= data.map
+    }
+
     preload(){
         
         this.load.image('gstileset', 'assets/tileset.png');
         this.load.image('gstileset2', 'assets/spritesheet_objects.png');
-        this.load.tilemapTiledJSON('gstilemap', `assets/${gameStatus.map}.json`);
+        if(this.map===0){
+            this.load.tilemapTiledJSON('gstilemap', `assets/map1.json`);
+        }else{
+            this.load.tilemapTiledJSON('gstilemap', `assets/map2.json`);
+        }
         this.load.image('flag', 'assets/flag.png'), 
         this.load.image(gameStatus.player1.car.name, `assets/${gameStatus.player1.car.path}.png`);
         this.load.image('flagEndRace', 'assets/flagEndRace.png');

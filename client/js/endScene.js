@@ -123,9 +123,9 @@ class EndScene extends Phaser.Scene{
 
     update(){
         if(this.updateXp){
-            while(this.playerXp !== playerStats.experience-getLevel().before){
+            while(this.playerXp <= playerStats.experience-getLevel().before){
                 this.playerXp++;
-                this.nowXp.setSize(this.playerXp*400/this.totalXpCalc, 30).setOrigin(0);
+                this.nowXp.setSize(this.playerXp*400/this.totalXpCalc, 30);
             }
         }
     }

@@ -114,9 +114,9 @@ class WaitingRoom extends Phaser.Scene{
         })
 
         socket.on('play', data=>{
-            if(data.play){
+            if(data.data.play){
                 this.scene.stop();
-                this.scene.start('GameScene')
+                this.scene.start('GameScene', {map: data.map})
             }
         })
         

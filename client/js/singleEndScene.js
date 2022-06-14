@@ -55,7 +55,7 @@ class SingleEndScene extends Phaser.Scene{
             this.nextLevelXp= getLevel().total;
             playerStats.experience+=xpReward(this.compareLaps(gameStatus.track, this.lapTime, 0), this.compareLaps(gameStatus.track, this.lapTime, 1), this.compareLaps(gameStatus.track, this.lapTime, 2), true, false);
             const rectFullXp= this.add.rectangle(200, h*0.9, 400, 30, 0xDCDCDC).setOrigin(0);
-            this.nowXp= this.add.rectangle(200, h*0.9, this.playerXp*400/this.nextLevelXp, 30, 0xDAA520).setOrigin(0);
+            this.nowXp= this.add.rectangle(200, h*0.9, this.playerXp*400/this.totalXpCalc, 30, 0xDAA520).setOrigin(0);
             this.updateXp= true;
             this.add.text(w*0.5, h*0.9-20, 'Xp points')
             
@@ -75,9 +75,9 @@ class SingleEndScene extends Phaser.Scene{
 
     update(){
         if(this.updateXp){
-            while(this.playerXp !== playerStats.experience-getLevel().before){
+            while(this.playerXp <= playerStats.experience-getLevel().before){
                 this.playerXp++
-                this.nowXp.setSize(this.playerXp*400/this.totalXpCalc, 30).setOrigin(0);
+                this.nowXp.setSize(this.playerXp*400/this.totalXpCalc, 30);
             }
         }
     }
