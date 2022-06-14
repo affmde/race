@@ -207,7 +207,7 @@ const cars=[
         id: 5,
         name: 'Mini van',
         path: 'Mini_van',
-        acceleration: 90,
+        acceleration: 100,
         maxSpeed: 300,
         break: 0.2,
         aerodynamic: 120,
