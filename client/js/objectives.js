@@ -56,7 +56,7 @@ class Objectives extends Phaser.Scene{
     update(){
         this.playerCoins.setText(playerStats.coins);
         const allObjec= listOfObjectives[this.objectivesLevel].every(obj=>{
-            const completed= playerStats.objectivesCompleted.includes(obj);
+            const completed= playerStats.objectivesCompleted.includes(obj.id);
             if(completed){
                 this.chest.setAlpha(1)
             }
@@ -144,7 +144,8 @@ class Objectives extends Phaser.Scene{
         //FOurth Objective
         const objective4= playerStats.objectivesCompleted.includes(listOfObjectives[this.objectivesLevel][3].id) ? true : false;
         if(!objective4){
-            const rect4=this.add.rectangle(120, obj3Box.y, playerStats.wins*560/listOfObjectives[this.objectivesLevel][3].condition, 30, 0xe6add8).setOrigin(0, 0.5).setAlpha(0.7);
+            const limit4= playerStats.wins>listOfObjectives[this.objectivesLevel][3].condition ? listOfObjectives[this.objectivesLevel][3].condition : playerStats.wins
+            const rect4=this.add.rectangle(120, obj3Box.y, limit4*560/listOfObjectives[this.objectivesLevel][3].condition, 30, 0xe6add8).setOrigin(0, 0.5).setAlpha(0.7);
             if(playerStats.wins>listOfObjectives[this.objectivesLevel][3].condition){
                 obj3Box.setFillStyle(0xFF4E00).setInteractive({cursor: 'pointer'});
                 obj3Box.on('pointerdown', ()=>{
@@ -170,7 +171,8 @@ class Objectives extends Phaser.Scene{
         //Fifth Objective
         const objective5= playerStats.objectivesCompleted.includes(listOfObjectives[this.objectivesLevel][4].id) ? true : false;
         if(!objective5){
-            const rect5=this.add.rectangle(120, obj4Box.y, playerStats.races.length*560/listOfObjectives[this.objectivesLevel][4].condition, 30, 0xe6add8).setOrigin(0, 0.5).setAlpha(0.7);
+            const limit5= playerStats.races.length>listOfObjectives[this.objectivesLevel][4].condition ? listOfObjectives[this.objectivesLevel][4].condition : playerStats.races.length
+            const rect5=this.add.rectangle(120, obj4Box.y, limit5*560/listOfObjectives[this.objectivesLevel][4].condition, 30, 0xe6add8).setOrigin(0, 0.5).setAlpha(0.7);
             if(playerStats.races.length>=listOfObjectives[this.objectivesLevel][4].condition){
                 obj4Box.setFillStyle(0xFF4E00).setInteractive({cursor: 'pointer'});
                 obj4Box.on('pointerdown', ()=>{
@@ -205,8 +207,8 @@ class Objectives extends Phaser.Scene{
                 this.nbrLaps.push(lap)
             }
         })
-    
-        const rect6=this.add.rectangle(120, obj5Box.y, this.nbrLaps.length*560/listOfObjectives[this.objectivesLevel][5].condition, 30, 0xe6add8).setOrigin(0, 0.5).setAlpha(0.7);
+        const limit6= this.nbrLaps.length>listOfObjectives[this.objectivesLevel][5].condition ? listOfObjectives[this.objectivesLevel][5].condition : this.nbrLaps.length
+        const rect6=this.add.rectangle(120, obj5Box.y, limit6*560/listOfObjectives[this.objectivesLevel][5].condition, 30, 0xe6add8).setOrigin(0, 0.5).setAlpha(0.7);
         if(!objective6){
             if(this.nbrLaps.length>=listOfObjectives[this.objectivesLevel][5].condition){
                 obj5Box.setFillStyle(0xFF4E00).setInteractive({cursor: 'pointer'});
