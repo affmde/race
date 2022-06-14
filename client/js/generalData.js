@@ -491,18 +491,18 @@ const listOfObjectives=[
         },
         {
             id: 11,
-            name: 'Complete 20 races',
-            reward: 1000,
+            name: 'Complete 80 races',
+            reward: 500,
             status:{
                 completed: false,
                 received: false
             },
-            condition: 20
+            condition: 80
         },
         {
             id: 12,
             name: 'Complete 500 laps.',
-            reward: 1500,
+            reward: 1000,
             status:{
                 completed: false,
                 received: false
@@ -510,14 +510,86 @@ const listOfObjectives=[
             condition: 500
         },
         {
-            id: 6,
-            name: 'Buy 3 car.',
+            id: 13,
+            name: 'Buy 4 car.',
             reward: 10,
             status:{
                 completed: false,
                 received: false
             },
-            condition: 2
+            condition: 3
+        }
+    ],
+    [
+        {
+            id: 14,
+            name: 'Login today',
+            reward: 5,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 0
+        },
+        {
+            id: 15,
+            name: 'Play 500 race.',
+            reward: 850,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 500
+        },
+        {
+            id: 16,
+            name: 'Play a multiplayer Race',
+            reward: 50,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 0
+        },
+        {
+            id: 17,
+            name: 'Win 100 races.',
+            reward: 2000,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 99
+        },
+        {
+            id: 18,
+            name: 'Complete 500 races',
+            reward: 2000,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 499
+        },
+        {
+            id: 19,
+            name: 'Complete 1500 laps.',
+            reward: 2000,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 1499
+        },
+        {
+            id: 20,
+            name: 'Buy 10 car.',
+            reward: 5000,
+            status:{
+                completed: false,
+                received: false
+            },
+            condition: 9
         }
     ]
 ]
