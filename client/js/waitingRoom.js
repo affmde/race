@@ -71,7 +71,6 @@ class WaitingRoom extends Phaser.Scene{
         homeBtn.on('pointerout', ()=>homeBtn.setAlpha(1))
 
         socket.on('connect', ()=>{
-            console.log(socket.id)
             socket.emit('connected', ({id: socket.id, stats: gameStatus.player1, name: playerStats.username}))
         })
         this.playBtn= this.add.image(w*0.5, h*0.8, 'btnYellow').setOrigin(0.5).setScale(0.5);
@@ -88,14 +87,11 @@ class WaitingRoom extends Phaser.Scene{
                 this.text= this.add.text(w*0.2, h*0.25+i*50, player.name, {fontSize : 28});
                 this.text2= this.add.text(w*0.2, h*0.25+i*50+30, player.stats.car.name, {fontSize : 15});
             })
-            console.log('playerList:', playerList)
             opponents= playerList.filter(player=>player.id!==socket.id)
             const myPlayer= playerList.find(pl=>pl.id===socket.id);
-            console.log('myPlayer: ', myPlayer)
             gameStatus.player1.position=myPlayer.position
         })
         socket.on('clientsCar', (data)=>{
-            console.log('clientsCar data: ', data)
             let a= opponents.find(o=>o.id===data.id)
         })
         

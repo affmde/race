@@ -101,7 +101,7 @@ class EndScene extends Phaser.Scene{
             gameStatus.player1.ready=false;
             pause=true
             gameStatus.player1.totalTime=0
-            listOfObjectives[2].status.completed=true;
+            listOfObjectives[playerStats.objectivesLevel][2].status.completed=true;
             if(typeOfGame==='multiplayer'){
                 saveReward();
                 if(this.checkIfWinner()){
@@ -124,10 +124,8 @@ class EndScene extends Phaser.Scene{
     update(){
         if(this.updateXp){
             while(this.playerXp !== playerStats.experience-getLevel().before){
-                this.playerXp+=0.5;
-                
+                this.playerXp++;
                 this.nowXp.setSize(this.playerXp*400/this.totalXpCalc, 30).setOrigin(0);
-                console.log(playerStats.experience)
             }
         }
     }

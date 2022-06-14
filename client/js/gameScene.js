@@ -232,7 +232,7 @@ class GameScene extends Phaser.Scene{
         })
 
         socket.on('newFastLap', (data)=>{
-            console.log('fastest lap data', data)
+            
             const rect = this.add.rectangle(0,40, w*0.4, h*0.5, 0xFFFFFF).setAlpha(0.8).setScrollFactor(0).setOrigin(0);
             const newLapTxt= this.add.text(0, 50,`${data.player.name} made a new lap:`, {fontSize: 20, color: 'black', wordWrap: { width: w*0.4, useAdvancedWrap: true }}).setScrollFactor(0).setOrigin(0);
             const timelap= timeConverter(data.laptime)
